@@ -1,0 +1,17 @@
+query_or_model_data:
+  name: 'Sketch'
+  num_workers: 6
+  shuffle: True
+  data_path: 'E:\SHREC_2014\SHREC14LSSTB_SKETCHES'
+  model_path: '.data/render/test'
+  batch_size: 6
+trainer_model:
+  device: 'cuda:0'
+  epochs: 600
+  lr: 0.00001
+  beta1: 0.5
+  beta2: 0.999
+models:
+  save_root: './params'
+  save_name: 'cross_net_params1.pth'
+
