@@ -1,6 +1,6 @@
 import torch
-from torch import nn
-import BackboneResnet
+import torch.nn as nn
+from Nets import BackboneResnet
 
 """
 resnet版后续网络更新，前面公共网络保留了前4个layer和第5个layer的前两个bottleNeck，第5个layer的最后一个bottleNeck及后续
@@ -26,14 +26,24 @@ class QueryNet(nn.Module):
             BackboneResnet.Bottleneck(inplanes=2048, planes=512),
             torch.nn.AvgPool2d((7, 7), stride=1),
             torch.nn.Flatten(),
-            torch.nn.Linear(2048, 171),
+        )
+        self.clf_mp1 = torch.nn.Sequential(
+            nn.Linear(2048,512),
+            nn.ReLU(),
+            nn.Dropout(p = 0.2)
+        )
+        self.clf_mlp2 = nn.Sequential(
+            nn.Linear(512,171)
         )
 
     def forward(self, x):
         x = self.resnet46(x)
-        clf_emb = self.clf_layer1(x)
-        clf_emb = self.clf_layer2(clf_emb)
-        return clf_emb
+        clf_fp1 = self.clf_layer1(x)
+        clf_fp2 = self.clf_layer2(clf_fp1)
+        clf_emb1 = self.clf_mp1(clf_fp2)
+        clf_emb2 = self.clf_mlp2(clf_emb1)
+
+        return clf_emb1,clf_emb2
 # class ModelNet(nn.Module):
 #     def __init__(self):
 #         super(ModelNet, self).__init__()
