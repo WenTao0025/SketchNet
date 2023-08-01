@@ -61,8 +61,8 @@ class SetNet(nn.Module):
             median_list = torch.cat([_tmp[i][0] for i in range(len(_tmp))] , 0)
             arg_median_list = torch.cat([_tmp[i][1] for i in range(len(_tmp))],0)
             return median_list,arg_median_list
-    def forward(self,sliho,batch_frame = None):#sliho torch.size([-1,-1,224,224]
-        #n:batch_size s:frame_num k:keypoints_num , c:channel
+    # def forward(self,sliho,batch_frame = None):#sliho torch.size([-1,-1,224,224]
+    #     #n:batch_size s:frame_num k:keypoints_num , c:channel
 
 
 
