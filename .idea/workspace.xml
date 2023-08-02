@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="452e842f-7dad-47da-b551-7e9acb732d2c" name="变更" comment="">
+    <list default="true" id="452e842f-7dad-47da-b551-7e9acb732d2c" name="变更" comment="修正了草图分支训练的代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Datasets/SketchNetDataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/SketchNetDataloader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MakeJson.py" beforeDir="false" afterPath="$PROJECT_DIR$/MakeJson.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configs/Sketch.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/Sketch.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
@@ -227,8 +226,16 @@
       <workItem from="1689049757937" duration="3891000" />
       <workItem from="1690019231721" duration="3393000" />
       <workItem from="1690439803212" duration="28885000" />
-      <workItem from="1690723101152" duration="39916000" />
+      <workItem from="1690723101152" duration="42474000" />
     </task>
+    <task id="LOCAL-00001" summary="修正了草图分支训练的代码">
+      <created>1690944912659</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1690944912659</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +251,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修正了草图分支训练的代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正了草图分支训练的代码" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Nets/SketchNet.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Sketch_based_3D_Retrieval$MakeJson.coverage" NAME="MakeJson 覆盖结果" MODIFIED="1690793122650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

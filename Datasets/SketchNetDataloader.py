@@ -35,15 +35,15 @@ class SketchDataset(Dataset):
         return category_dict
     def get_path_list(self,cfg,type):
         #得到训练集或测试集所有的查询图像
-        path_list = glob.glob("%s/*/%s/*.png"%(cfg.query_or_model_data.data_path,type))
+        path_list = glob.glob("%s/image/SHREC14LSSTB_SKETCHES/*/%s/*.png"%(cfg.query_or_model_data.data_path,type))
         return path_list
     def get_category(self,path_list,category_dict):
-        label_cat = -1
-        for category in category_dict.keys():
-            if category in path_list:
+       label_cat = -1#找出对应的标签
+       for category in category_dict.keys():
+           if category in path_list:
                 label_cat = category_dict[category]
                 break
-        return label_cat
+       return label_cat
 def load_model_sketch_datasets(cfg,type):
     type = type
     num_workers = cfg.query_or_model_data.num_workers

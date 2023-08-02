@@ -10,10 +10,7 @@ import os.path as osp
 from Datasets.SketchNetDataloader import load_model_sketch_datasets
 class Train():
     def __init__(self,cfg):
-        if torch.cuda.is_available():
-            self.device = 'cuda:0'
-        else:
-            self.device = 'cpu'
+        self.device = 'cuda:1'
         self.channels = 3
         self.pix_size = 224
         self.load_data_train = load_model_sketch_datasets(cfg,'train')
@@ -22,7 +19,7 @@ class Train():
         self.loss_f = nn.CrossEntropyLoss()
         self.load()
         self.best_clf = 0
-        self.opt = torch.optim.Adam(params = self.net.parameters(),lr = 0.00001,betas=(0.5,0.999))
+        self.opt = torch.optim.Adam(params = self.net.parameters(),lr = 0.001,betas=(0.5,0.999))
         print("预训练参数加载完成")
     def load(self):
         nets = self.net
@@ -71,7 +68,7 @@ class Train():
             pbar.set_description("Epoch : %d" % (epoch))
     def train_single(self,epochs):
         for epoch in range(epochs):
-            self.train(datasets=self.load_data_train,net=self.net,loss_f=self.loss_f,opt=self.opt,epoch=epoch)
+            self.train(self.load_data_train,self.net,self.loss_f,self.opt,epoch)
             if epoch >= 10 and (epoch % 2) == 0:
                 self.test()
     def test(self):
@@ -98,7 +95,7 @@ class Train():
             self.save()
     def save(self):
         print("saving...")
-        torch.save(self.net.state_dict(),osp.join('params','backbone','SketchNets.pth'))
+        torch.save(self.net.state_dict(),osp.join('./params','backbone','SketchNets.pth'))
 
 
 if __name__ == '__main__':
@@ -123,4 +120,3 @@ if __name__ == '__main__':
     # img = torch.randn(3,224,224)
     train = Train(cfg)
     train.train_single(600)
-

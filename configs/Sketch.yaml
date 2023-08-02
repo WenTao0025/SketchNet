@@ -1,10 +1,10 @@
 query_or_model_data:
   name: 'Sketch'
-  num_workers: 6
-  shuffle: False
-  data_path: './data/image/SHREC14LSSTB_SKETCHES'
+  num_workers: 1
+  shuffle: True
+  data_path: './data'
   model_path: '.data/render/test'
-  batch_size: 6
+  batch_size: 16
 trainer_model:
   device: 'cuda:0'
   epochs: 600
