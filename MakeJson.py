@@ -57,28 +57,35 @@ def sort_files_by_number(files):
     #返回排序后的文件名列表
     return [file for (file,parts) in groups]
 if __name__ == '__main__':
-    data_dict = {}
-    label_list = os.listdir('./data/render/test')
-    for i , name in enumerate(label_list):
-        data_dict[name] = i
-    with open('data_dict.json','w') as json_file:
-        json.dump(data_dict,json_file,indent=4)
-    datas_list = []
-    for key in label_list:
-        modelfilenames = glob.glob("%s/%s/%s/*.png"%('./data/render','test',key))
-        sorted_model_filenames = sort_files_by_number(modelfilenames)
-        packed_model_filenames = np.array(sorted_model_filenames)
-        model_nums = len(packed_model_filenames) // 18
-        packed_filenames = packed_model_filenames.reshape(model_nums,18)
+    # data_dict = {}
+    # label_list = os.listdir('./data/image/SHREC14LSSTB_SKETCHES')
+    # for i , name in enumerate(label_list):
+    #     data_dict[name] = i
+    #     data_dict[name]['category'] = name
+    #     pathlist = glob.glob('./data/image/SHREC14LSSTB_SKETCHES/%s/%s/*.png'%(name,'test'))
+    #     print(pathlist)
+    #     data_dict[name]['path'] = pathlist
+    # with open('data_test_dict.json','w') as json_file:
+    #     json.dump(data_dict,json_file,indent=4)
+    pathlist = glob.glob('./data/image/SHREC14LSSTB_SKETCHES/%s/%s/*.png' % ('airplane', 'test'))
+    print(pathlist)
 
-        render_list = packed_filenames.tolist()
-        query_list = glob.glob("%s/%s/%s/%s/*.png"%('./data/image','SHREC14LSSTB_SKETCHES',key,'test'))
-        data_items = get_json_list(render_list,query_list,key)
-        datas_list.append(data_items)
-    datas_list = [i for j in datas_list for i in j]
-
-    data = {}
-    data['data_list'] = datas_list
-    with open('data_train.json',"w") as json_file:
-        json.dump(data,json_file,indent=4)
+    # datas_list = []
+    # for key in label_list:
+    #     modelfilenames = glob.glob("%s/%s/%s/*.png"%('./data/render','test',key))
+    #     sorted_model_filenames = sort_files_by_number(modelfilenames)
+    #     packed_model_filenames = np.array(sorted_model_filenames)
+    #     model_nums = len(packed_model_filenames) // 18
+    #     packed_filenames = packed_model_filenames.reshape(model_nums,18)
+    #
+    #     render_list = packed_filenames.tolist()
+    #     query_list = glob.glob("%s/%s/%s/%s/*.png"%('./data/image','SHREC14LSSTB_SKETCHES',key,'test'))
+    #     data_items = get_json_list(render_list,query_list,key)
+    #     datas_list.append(data_items)
+    # datas_list = [i for j in datas_list for i in j]
+    #
+    # data = {}
+    # data['data_list'] = datas_list
+    # with open('data_train.json',"w") as json_file:
+    #     json.dump(data,json_file,indent=4)
 

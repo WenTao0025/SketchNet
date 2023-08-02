@@ -22,7 +22,7 @@ class Train():
         self.loss_f = nn.CrossEntropyLoss()
         self.load()
         self.best_clf = 0
-        self.opt = torch.optim.Adam(lr = 0.00001,betas=(0.5,0.999))
+        self.opt = torch.optim.Adam(params = self.net.parameters(),lr = 0.00001,betas=(0.5,0.999))
         print("预训练参数加载完成")
     def load(self):
         nets = self.net
@@ -70,8 +70,8 @@ class Train():
             pbar.set_postfix(info_dict)
             pbar.set_description("Epoch : %d" % (epoch))
     def train_single(self,epochs):
-        for epoch in epochs:
-            self.train(self.load_data_train,self.net,self.loss_f,self.opt,epoch)
+        for epoch in range(epochs):
+            self.train(datasets=self.load_data_train,net=self.net,loss_f=self.loss_f,opt=self.opt,epoch=epoch)
             if epoch >= 10 and (epoch % 2) == 0:
                 self.test()
     def test(self):
@@ -122,4 +122,5 @@ if __name__ == '__main__':
     cfg = dic2namespace(config)
     # img = torch.randn(3,224,224)
     train = Train(cfg)
-    train.load()
+    train.train_single(600)
+

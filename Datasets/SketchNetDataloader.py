@@ -21,8 +21,7 @@ class SketchDataset(Dataset):
         self.data_paths = self.get_path_list(cfg,type)#得到全部的文件地址
     def __getitem__(self, item):
         data_path = self.data_paths[item]
-        data_category = self.get_category(data_path)
-        data_label = self.category_dict[data_category]
+        data_label = self.get_category(data_path,self.category_dict)
         data_label = torch.tensor(data_label)
         sketch_img = Image.open(data_path)
         sketch_img = self.trans(sketch_img)
@@ -38,8 +37,13 @@ class SketchDataset(Dataset):
         #得到训练集或测试集所有的查询图像
         path_list = glob.glob("%s/*/%s/*.png"%(cfg.query_or_model_data.data_path,type))
         return path_list
-    def get_category(self,path_list):
-       return path_list.split('\\')[1]#找出对应的标签
+    def get_category(self,path_list,category_dict):
+        label_cat = -1
+        for category in category_dict.keys():
+            if category in path_list:
+                label_cat = category_dict[category]
+                break
+        return label_cat
 def load_model_sketch_datasets(cfg,type):
     type = type
     num_workers = cfg.query_or_model_data.num_workers

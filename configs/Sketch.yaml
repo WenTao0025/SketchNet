@@ -1,8 +1,8 @@
 query_or_model_data:
   name: 'Sketch'
   num_workers: 6
-  shuffle: True
-  data_path: 'E:\SHREC_2014\SHREC14LSSTB_SKETCHES'
+  shuffle: False
+  data_path: './data/image/SHREC14LSSTB_SKETCHES'
   model_path: '.data/render/test'
   batch_size: 6
 trainer_model:
